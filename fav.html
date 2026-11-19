@@ -1,0 +1,30 @@
+{% extends "shop/layouts/main.html" %}
+{% block content %}
+    <section class="bg-light py-4 my-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 mt-3">
+                    <h4 class="mb-3" text-primary>Fav Items</h4>
+                    <hr style="border-color:#b8bfc2;">
+                </div>
+                
+               
+                <table class="table table-bordered">
+                    <tr>
+                        <th>Image</th>
+                        <th>Product Name</th>
+                        <th>Remove</th>
+                    </tr>
+                    {% for item in fav %} 
+                    <tr>
+                        <td><img src="{{item.product.product_image.url}}" alt="product_img" height="75px";></td>
+                        <td>{{item.product.name}}</td>
+                        <td> <a href="{% url 'remove_fav' item.id %}" onclick="return confirm ('Are you sure to remove?')" class="btn btn-danger"><i class="fa-solid fa-trash" style="color: rgb(248, 248, 248);"></i>Remove</a></td>
+                    </tr>
+
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+    </section>
+{% endblock content %} 

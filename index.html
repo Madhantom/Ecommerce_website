@@ -1,0 +1,53 @@
+{% extends "shop/layouts/main.html" %} {% block content %}
+<section class="collection-section">
+  <div class="container">
+    <div class="text-center mt-4">
+      <h2 class="section-title">{{ catagory }} Products</h2>
+      <p class="section-subtitle">Best quality products in this category</p>
+
+      <nav aria-label="breadcrumb" class="d-flex justify-content-center mt-3">
+        <ol class="breadcrumb bg-white px-3 py-2 rounded shadow-sm">
+          <li class="breadcrumb-item">
+            <a href="{% url 'home' %}">Home</a>
+          </li>
+          <li class="breadcrumb-item">
+            <a href="{% url 'Collections' %}">Collections</a>
+          </li>
+          <li class="breadcrumb-item active">{{ catagory }}</li> 
+        </ol>
+      </nav>
+    </div>
+
+    <div class="row">
+      {% for item in products %}
+      <div class="col-lg-3 col-md-4 col-sm-6 mb-4">
+        <div class="collection-card">
+          {% if item.product_image %}
+          <div class="collection-img">
+            <img src="{{ item.product_image.url }}" alt="{{ item.name }}" />
+          </div>
+          {% endif %}
+
+          <div class="collection-body">
+            <h5>{{ item.name }}</h5>
+
+            <div class="price-box">
+              <span class="old-price"> Rs.{{ item.orignal_price }} </span>
+
+              <span class="new-price"> Rs.{{ item.selling_price }} </span>
+            </div>
+
+            <a
+              href="{% url 'product_details' catagory item.name %}"
+              class="collection-btn"
+            >
+              View Product
+            </a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+{% endblock content %}

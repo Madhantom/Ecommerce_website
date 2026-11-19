@@ -1,0 +1,71 @@
+{% extends "shop/layouts/main.html" %}
+{% block content %}
+  <div class="container  " style="margin-top:70px; min-height:600px;">
+    <div class="row">
+        <div class="col-12">
+            <h4 class="mb-3 text-primary mt-3">Register page</h4>
+            <hr style="border-color:#b8bfc2;">
+            {% include "shop/inc/message.html" %}
+        </div>
+    </div>
+   <section class="register-section">
+
+    <div class="register-card">
+
+        <div class="text-center mb-4">
+            <h2>Create Account</h2>
+            <p>Join us and start shopping today.</p>
+        </div>
+
+        <form method="POST">
+            {% csrf_token %}
+
+            <div class="mb-3">
+                <label class="form-label">Username</label>
+                {{ form.username }}
+                {% if form.errors.username %}
+                <small class="text-danger">{{ form.errors.username }}</small>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Email Address</label>
+                {{ form.email }}
+                {% if form.errors.email %}
+                <small class="text-danger">{{ form.errors.email }}</small>
+                {% endif %}
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Password</label>
+                {{ form.password1 }}
+                {% if form.errors.password1 %}
+                <small class="text-danger">{{ form.errors.password1 }}</small>
+                {% endif %}
+            </div>
+
+            <div class="mb-4">
+                <label class="form-label">Confirm Password</label>
+                {{ form.password2 }}
+                {% if form.errors.password2 %}
+                <small class="text-danger">{{ form.errors.password2 }}</small>
+                {% endif %}
+            </div>
+
+            <button type="submit" class="register-btn">
+                Register
+            </button>
+
+        </form>
+
+        <div class="login-link mt-4">
+            Already have an account?
+            <a href="{% url 'login' %}">Login</a>
+        </div>
+
+    </div>
+
+</section>
+             
+  </div> 
+{% endblock content %} 
